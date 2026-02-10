@@ -1,0 +1,1 @@
+print("Hey, automation folder is running")
