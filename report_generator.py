@@ -1,6 +1,14 @@
 import requests
 import csv
 from datetime import datetime
+import sys
+
+if len(sys.argv) != 3:
+    print("Usage: py report_generator.py input.csv output.csv")
+    sys.exit()
+
+input_file = sys.argv[1]
+output_file = sys.argv[2]
 
 POSTS_URL = "https://jsonplaceholder.typicode.com/posts"
 
@@ -22,7 +30,7 @@ def filter_posts(posts, user_id=None, keyword=None):
 
     return filtered
 
-def write_csv(posts, filename="report.csv"):
+def write_csv(posts, filename):
     with open(filename, "w", newline="", encoding="utf-8") as f:
         writer = csv.writer(f)
         writer.writerow(["userId", "id", "title", "body"])
@@ -49,14 +57,9 @@ def main():
             keyword=keyword_in_title
         )
 
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        filename = f"report_user_{user_id_to_report}_{timestamp}.csv"
-
-        write_csv(filtered_posts, filename)
-
-        print(f"✅ Report generated: {filename}")
+        write_csv(filtered_posts, output_file)
+        print(f"✅ Report generated: {output_file}")
         print(f"📊 Rows in report: {len(filtered_posts)}")
-
     except Exception as e:
         print("❌ Failed to generate report:", e)
 
