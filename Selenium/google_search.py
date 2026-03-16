@@ -8,11 +8,7 @@ driver.get("https://www.google.com")
 
 search_box = driver.find_element(By.NAME, "q")
 
-text = "property in Indore"
-
-for letter in text:
-    search_box.send_keys(letter)
-    time.sleep(0.2)
+search_box.send_keys("property in Indore")
 
 search_box.submit()
 
