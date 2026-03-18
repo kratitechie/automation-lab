@@ -1,3 +1,17 @@
+"""
+Script: google_search.py
+Goal: Automate a Google search using Selenium.
+
+Steps:
+1. Launch Chrome
+2. Navigate to Google
+3. Locate search box using NAME locator
+4. Type query
+5. Submit search
+"""
+
+
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 import time
